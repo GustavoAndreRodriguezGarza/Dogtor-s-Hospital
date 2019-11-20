@@ -1,14 +1,35 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Ionic Blank
+      El ABC de los animales
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let animal of Animales" size = '12'>
+          <ion-card (click) = "reproducirAnimal(animal)" tappable>
+            <ion-img src="{{animal.imagen}}"></ion-img>
+            <p>
+              Especie: {{animal.especie}}
+              <br>
+              Raza: {{animal.raza}}
+              <br>
+              Alimentacion: {{animal.alimentacion}}
+              <br>
+              Ecosistema: {{animal.ecosistema}}
+              <br>
+              Peso: {{animal.peso}}
+              <br>
+              Genero: {{animal.genero}}
+            </p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div align="center">
+    <input class="toggle" type="checkbox" (change)="switchFlashlight($event)"/>
+    </div>
 </ion-content>
+

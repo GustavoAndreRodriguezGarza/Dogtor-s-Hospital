@@ -1,0 +1,56 @@
+ion-item{
+    --background: #15D0B3;
+    --color: #fff;
+    --border-color: white;
+}
+ion-input{
+    --placeholder-color: white; 
+    --placeholder-opacity: 100;
+}
+ion-icon{
+    font-size: 25px;
+}
+ion-button{
+    --background: white;
+    --opacity: 100;	
+    font-weight: 900;
+}
+.center {
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%,50%);
+    position: absolute;
+}
+h3{
+    color: white;
+    font-weight: bold;
+}
+div {
+    background-color: inherit;
+    border: 0px;
+  }
+.icon-bigger {
+    font-size: 100px;
+}
+.editButton {
+    padding-top: 40px;
+    text-align: center;
+}
+ion-card{
+    width: 100% !important;
+}
+hr{
+    border: 0.1px solid white;
+}
+.cardItems{
+    color: #fff;
+    --background:  #fff;
+}
+.Footer{
+    color: #fff;
+    --background:  #fff;
+    text-align: center;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+}

@@ -1,0 +1,67 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-col>
+      <ion-icon name="menu" (click)="SideBar()"></ion-icon>
+    </ion-col>
+    <ion-col class="center">
+      Animales en adopción
+    </ion-col>    
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content color="primary" padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let mascota of mascotas">
+      <ion-item>
+        <ion-card >
+          <ion-card-header>
+            <ion-card-title class="cardItems">
+              Nombre
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="cardItems">
+            <ion-row>
+              <ion-col>
+                <p>
+                  Especie: {{mascota.especie}}
+                  <br>
+                  Raza: {{mascota.raza}}
+                  <br>
+                  Alimentacion: {{mascota.alimentacion}}
+                  <br>
+                  Peso: {{mascota.peso}}
+                  <br>
+                  Genero: {{mascota.genero}}
+                </p>
+              </ion-col>
+              <ion-col>
+                <img src="{{mascota.imagen}}">
+              </ion-col> 
+            </ion-row>
+          </ion-card-content>
+          <ion-card-header>
+              <hr>
+            <ion-card-title class="Footer" (click)="abrirModal()">
+              Adoptar
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+<ion-tab-bar slot="bottom">
+  <ion-tab-button tab="cuenta">
+    <ion-icon name="images"></ion-icon>
+    <ion-label>Galeria</ion-label>
+  </ion-tab-button>
+  <ion-tab-button routerLink='/resumen'>
+    <ion-icon name="bowtie"></ion-icon>
+    <ion-label>Adopcion</ion-label>
+  </ion-tab-button>
+  <ion-tab-button routerLink='/resumen'>
+    <ion-icon name="camera"></ion-icon>
+    <ion-label>Encontre un perro</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>
