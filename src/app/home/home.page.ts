@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,11 @@ import { Flashlight } from '@ionic-native/flashlight/ngx';
   providers: [Flashlight]
 })
 export class HomePage {
+  currentImage: any;
+  /*constructor(private flashlight: Flashlight) { }*/
+  constructor(private camera: Camera) { }
 
-  constructor(private flashlight: Flashlight) {
-  }
-  Animales=[
+  Animales = [
     {
       audio:'/assets/Tigre.mp3',
       imagen:'/assets/Tigre.png',
@@ -54,8 +56,24 @@ export class HomePage {
     sonido.load();
     sonido.play();
   }
+  
+  takePicture() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
 
-  switchFlashlight(evento) {
+    this.camera.getPicture(options).then((imageData) => {
+      this.currentImage = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+      console.log('Camera issue:' + err);
+    });
+  }
+
+  /*switchFlashlight(evento) {
 
     let power: boolean = evento.target.checked;
 
@@ -66,6 +84,6 @@ export class HomePage {
     else {
       this.flashlight.switchOff();
     }
-  }
+  }*/
 
 }
