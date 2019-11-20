@@ -10,16 +10,19 @@ ion-input{
 ion-icon{
     font-size: 25px;
 }
+ion-content{
+    --border-color: white;
+}
 ion-button{
     --background: white;
     --opacity: 100;	
     font-weight: 900;
 }
 .center {
-    right: 50%;
-    bottom: 50%;
-    transform: translate(50%,50%);
-    position: absolute;
+    text-align: center;
+    align-content: center;
+    align-self: center;
+    align-items: center;
 }
 h3{
     color: white;
@@ -53,4 +56,9 @@ hr{
     align-content: center;
     align-self: center;
     align-items: center;
+}
+.Tabs{
+    --background: #15D0B3;
+    --color: #fff;
+    --border-color: white;
 }

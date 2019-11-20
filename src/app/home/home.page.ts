@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
+import { SideBarPage } from '../side-bar/side-bar.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,7 @@ import { Flashlight } from '@ionic-native/flashlight/ngx';
 })
 export class HomePage {
 
-  constructor(private flashlight: Flashlight) {
+  constructor(private flashlight: Flashlight, private modalController: ModalController) {
   }
   Animales=[
     {
@@ -66,6 +68,17 @@ export class HomePage {
     else {
       this.flashlight.switchOff();
     }
+  }
+
+  async SideBar() {
+    const modal = await this.modalController.create({
+      component: SideBarPage,
+      cssClass: 'my-custom-modal-css'
+    });
+
+    modal.onDidDismiss().then((data) => {
+    });
+    return await modal.present();
   }
 
 }

@@ -4,8 +4,13 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
+import { SideBarPage } from '../side-bar/side-bar.page';
+import { SideBarPageModule } from '../side-bar/side-bar.module';
 
 @NgModule({
+  entryComponents: [
+    SideBarPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -15,7 +20,8 @@ import { HomePage } from './home.page';
         path: '',
         component: HomePage
       }
-    ])
+    ]),
+    SideBarPageModule
   ],
   declarations: [HomePage]
 })
