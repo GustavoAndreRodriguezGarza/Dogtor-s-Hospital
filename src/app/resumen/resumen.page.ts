@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 import * as watermark from 'watermarkjs';
 
 @Component({
@@ -13,6 +13,20 @@ export class ResumenPage {
 
   @ViewChild('waterMarkedImage', {static: false}) waterMarkImage: ElementRef;
  
+  geoLatitude: number;
+  geoLongitude: number;
+  geoAccuracy: number;
+  geoAddress: string;
+ 
+  watchLocationUpdates: any; 
+  loading: any;
+  isWatching: boolean;
+
+  geoencoderOptions: NativeGeocoderOptions = {
+    useLocale: true,
+    maxResults: 5
+  };
+
   originalImage = null;
   blobImage = null;
   locationCordinates: any;
@@ -29,10 +43,61 @@ export class ResumenPage {
  
   constructor(
     private camera: Camera,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private nativeGeocoder: NativeGeocoder
   ) {
     this.getLatLong();
   }
+
+  getGeolocation(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.geoLatitude = resp.coords.latitude;
+      this.geoLongitude = resp.coords.longitude; 
+      this.geoAccuracy = resp.coords.accuracy; 
+      this.getGeoencoder(this.geoLatitude,this.geoLongitude);
+     }).catch((error) => {
+       alert('Error getting location'+ JSON.stringify(error));
+     });
+  }
+
+  getGeoencoder(latitude,longitude){
+    this.nativeGeocoder.reverseGeocode(latitude, longitude, this.geoencoderOptions)
+    .then((result: NativeGeocoderResult[]) => {
+      this.geoAddress = this.generateAddress(result[0]);
+    })
+    .catch((error: any) => {
+      alert('Error getting location'+ JSON.stringify(error));
+    });
+  }
+
+  generateAddress(addressObj){
+    let obj = [];
+    let address = "";
+    for (let key in addressObj) {
+      obj.push(addressObj[key]);
+    }
+    obj.reverse();
+    for (let val in obj) {
+      if(obj[val].length)
+      address += obj[val]+', ';
+    }
+  return address.slice(0, -2);
+}
+
+watchLocation(){
+  this.isWatching = true;
+  this.watchLocationUpdates = this.geolocation.watchPosition();
+  this.watchLocationUpdates.subscribe((resp) => {
+    this.geoLatitude = resp.coords.latitude;
+    this.geoLongitude = resp.coords.longitude; 
+    this.getGeoencoder(this.geoLatitude,this.geoLongitude);
+  });
+}
+
+stopLocationWatch(){
+  this.isWatching = false;
+  this.watchLocationUpdates.unsubscribe();
+}
  
   takeSnap() {
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
@@ -47,6 +112,7 @@ export class ResumenPage {
     }, (error) => {
        console.log(error);
     });
+    this.getGeolocation();
   }
 
   getLatLong() {
@@ -63,7 +129,7 @@ export class ResumenPage {
 
   watermarkImage() {
     watermark([this.blobImage])
-    .image(watermark.text.lowerLeft(this.getLatLong(), '200px Arial', '#F5A905', 0.8))
+    .image(watermark.text.lowerLeft(this.geoAddress, '200px Arial', '#F5A905', 0.8))
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
