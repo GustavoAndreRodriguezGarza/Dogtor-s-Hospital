@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>resumen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="takeSnap()">
+    Take Snap
+  </ion-button>
+  <img #waterMarkedImage>
+</ion-content>
+
+<ion-tab-bar slot="bottom" color="primary" class="Tabs">
+  <ion-tab-button routerLink="/home">
+    <ion-icon name="images"></ion-icon>
+    <ion-label>Galeria</ion-label>
+  </ion-tab-button>
+  <ion-tab-button tab='/adopcion'>
+    <ion-icon name="bowtie"></ion-icon>
+    <ion-label>Adopcion</ion-label>
+  </ion-tab-button>
+  <ion-tab-button routerLink='/resumen'>
+    <ion-icon name="camera"></ion-icon>
+    <ion-label>Encontre un perro</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>
