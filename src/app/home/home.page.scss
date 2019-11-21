@@ -1,22 +1,65 @@
-.img-container{
-  text-align: center;
-  z-index: 1;
+ion-item{
+  --background: #15D0B3;
+  --color: #fff;
+  --border-color: white;
 }
-.img{
-  display: inline-block;
+ion-input{
+  --placeholder-color: white; 
+  --placeholder-opacity: 100;
 }
-ion-card{
-  display: flex;
-  flex-direction: column;
-  width: 100% !important;
-  margin: 0 !important;
-  --background: white;
+ion-icon{
+  font-size: 25px;
 }
 ion-content{
-  --padding-bottom: 30pt;
-  --padding-end: 30pt;
-  --padding-start: 30pt;
-  --padding-top: 30pt;
+  --border-color: white;
+}
+ion-button{
+  --background: white;
+  --opacity: 100;	
+  font-weight: 900;
+}
+.center {
+  text-align: center;
+  align-content: center;
+  align-self: center;
+  align-items: center;
+}
+h3{
+  color: white;
+  font-weight: bold;
+}
+div {
+  background-color: inherit;
+  border: 0px;
+}
+.icon-bigger {
+  font-size: 100px;
+}
+.editButton {
+  padding-top: 40px;
+  text-align: center;
+}
+ion-card{
+  width: 100% !important;
+}
+hr{
+  border: 0.1px solid white;
+}
+.cardItems{
+  color: #fff;
+}
+.Footer{
+  color: #fff;
+  --background:  #fff;
+  text-align: center;
+  align-content: center;
+  align-self: center;
+  align-items: center;
+}
+.Tabs{
+  --background: #15D0B3;
+  --color: #fff;
+  --border-color: white;
 }
 .toggle {
   -webkit-appearance: none;

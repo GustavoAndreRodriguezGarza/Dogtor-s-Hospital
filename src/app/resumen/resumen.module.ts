@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { HomePage } from './home.page';
+import { Routes, RouterModule } from '@angular/router';
+
+import { IonicModule } from '@ionic/angular';
+
+import { ResumenPage } from './resumen.page';
 import { SideBarPage } from '../side-bar/side-bar.page';
 import { SideBarPageModule } from '../side-bar/side-bar.module';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ResumenPage
+  }
+];
 
 @NgModule({
   entryComponents: [
@@ -14,15 +23,10 @@ import { SideBarPageModule } from '../side-bar/side-bar.module';
   imports: [
     CommonModule,
     FormsModule,
+    SideBarPageModule,
     IonicModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: HomePage
-      }
-    ]),
-    SideBarPageModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [HomePage]
+  declarations: [ResumenPage]
 })
-export class HomePageModule {}
+export class ResumenPageModule {}
