@@ -17,7 +17,15 @@
           <ion-icon name="camera"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-  <img #waterMarkedImage>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" *ngFor="let photo of photos">
+            <img [src]="photo.data" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
   <ion-fab vertical="top" horizontal="start" slot="fixed">
       <ion-fab-button (click)="getGeolocation()">
         <ion-icon name="locate"></ion-icon>
@@ -44,8 +52,8 @@
     <ion-icon name="bowtie"></ion-icon>
     <ion-label>Adopcion</ion-label>
   </ion-tab-button>
-  <ion-tab-button tab='/resumen'>
 
+  <ion-tab-button tab='/resumen'>
     <ion-icon name="camera"></ion-icon>
     <ion-label>Encontre un perro</ion-label>
   </ion-tab-button>

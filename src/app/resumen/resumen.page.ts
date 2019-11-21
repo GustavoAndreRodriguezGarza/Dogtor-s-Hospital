@@ -13,6 +13,8 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './resumen.page.html',
   styleUrls: ['./resumen.page.scss'],
 })
+
+
 export class ResumenPage {
 
   @ViewChild('waterMarkedImage', {static: false}) waterMarkImage: ElementRef;
@@ -36,7 +38,8 @@ export class ResumenPage {
   blobImage = null;
   locationCordinates: any;
   loadingLocation: boolean;
- 
+  public photos: Photo[] = [];
+
   cameraOptions: CameraOptions = {
     quality: 20,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -87,7 +90,7 @@ export class ResumenPage {
       if(obj[val].length)
       address += obj[val]+', ';
     }
-  return address.slice(0, -2);
+    return address.slice(0, -2);
 }
 
 watchLocation(){
@@ -108,13 +111,19 @@ stopLocationWatch(){
   takeSnap() {
     this.getGeolocation();
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
-      this.originalImage = 'data:image/jpeg;base64,' + imageData;
-      fetch(this.originalImage)
+     this.originalImage = 'data:image/jpeg;base64,' + imageData;
+     /*this.photos.unshift({
+        data: 'data:image/jpeg;base64,' + imageData
+    });*/
+     fetch(this.originalImage)
         .then(res => res.blob())
         .then(blob => {
           this.blobImage = blob;
           this.watermarkImage();
         });
+     this.photos.unshift({
+      data: 'data:image/jpeg;base64,' + imageData
+      });
     }, (error) => {
        console.log(error);
     });
@@ -152,4 +161,7 @@ stopLocationWatch(){
     return await modal.present();
   }
 
+}
+class Photo {
+  data: any;
 }
