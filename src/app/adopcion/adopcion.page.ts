@@ -11,7 +11,6 @@ import { SideBarPage } from '../side-bar/side-bar.page';
 })
 export class AdopcionPage implements OnInit {
 
-  public movimientos;
   mascotas: { imagen: string; nombre: string; especie: string; alimentacion: string; peso: string; genero: string; raza: string; }[];
 
 
@@ -51,7 +50,6 @@ export class AdopcionPage implements OnInit {
   }
 
   async abrirModal() {
-    console.log(this.movimientos);
     const modal = await this.modalController.create({
       component: AdoptarPage
     });
@@ -65,7 +63,6 @@ export class AdopcionPage implements OnInit {
   }
 
   async SideBar() {
-    console.log(this.movimientos);
     const modal = await this.modalController.create({
       component: SideBarPage,
       cssClass: 'my-custom-modal-css'

@@ -1,0 +1,59 @@
+<ion-header >
+    <ion-toolbar color="primary">
+      <ion-col>
+        <ion-icon name="menu" (click)="SideBar()"></ion-icon>
+      </ion-col>
+      <ion-col class="center">
+        Fotos
+      </ion-col>    
+    </ion-toolbar> 
+  </ion-header>
+
+<ion-content color="primary" align="center">
+    <br>
+    <br>
+  <ion-button (click)="takeSnap()">
+    Take Snap
+  </ion-button>
+  <img #waterMarkedImage>
+  <ion-button (click)="getGeolocation()">
+    Get Location
+  </ion-button>
+  <ion-button (click)="watchLocation()">
+    Watch Location Updates
+  </ion-button>
+  <ion-button (click)="stopLocationWatch()">
+    Stop Location Watch
+  </ion-button>
+  <div *ngIf="geoLatitude">
+    <p>Latitude : {{geoLatitude}}</p>
+    <p>Longitude : {{geoLongitude}}</p>
+    <p>Accuracy : {{geoAccuracy}}</p>
+    <p class="address-text">
+ 
+      <span class="watch-text" *ngIf="isWatching; else notWatching">
+        Watching Location
+      </span>
+      <ng-template #notWatching>
+        Location Watch Stopped
+      </ng-template>
+ 
+      <br>Address : {{geoAddress }}
+    </p>
+  </div>
+</ion-content>
+
+<ion-tab-bar slot="bottom" color="primary" class="Tabs">
+  <ion-tab-button routerLink="/home">
+    <ion-icon name="images"></ion-icon>
+    <ion-label>Galeria</ion-label>
+  </ion-tab-button>
+  <ion-tab-button routerLink='/adopcion'>
+    <ion-icon name="bowtie"></ion-icon>
+    <ion-label>Adopcion</ion-label>
+  </ion-tab-button>
+  <ion-tab-button tab='/resumen'>
+    <ion-icon name="camera"></ion-icon>
+    <ion-label>Encontre un perro</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>
