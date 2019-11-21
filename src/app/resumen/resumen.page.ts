@@ -98,11 +98,12 @@ stopLocationWatch(){
   this.isWatching = false;
   this.watchLocationUpdates.unsubscribe();
 }
- 
+
   takeSnap() {
+    this.getGeolocation();
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
       this.originalImage = 'data:image/jpeg;base64,' + imageData;
- 
+
       fetch(this.originalImage)
         .then(res => res.blob())
         .then(blob => {
@@ -112,7 +113,6 @@ stopLocationWatch(){
     }, (error) => {
        console.log(error);
     });
-    this.getGeolocation();
   }
 
   getLatLong() {
@@ -129,7 +129,7 @@ stopLocationWatch(){
 
   watermarkImage() {
     watermark([this.blobImage])
-    .image(watermark.text.lowerLeft(this.geoAddress, '200px Arial', '#F5A905', 0.8))
+    .image(watermark.text.lowerLeft('('  +  this.geoAddress  +  ')', '200px Arial', '#F5A905', 0.8))
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
