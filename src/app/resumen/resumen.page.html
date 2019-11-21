@@ -5,31 +5,23 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="takeSnap()">
-    Take Snap
-  </ion-button>
+
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="takeSnap()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
   <img #waterMarkedImage>
-  <ion-button (click)="getGeolocation()">
-    Get Location
-  </ion-button>
-  <ion-button (click)="watchLocation()">
-    Watch Location Updates
-  </ion-button>
-  <ion-button (click)="stopLocationWatch()">
-    Stop Location Watch
-  </ion-button>
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+      <ion-fab-button (click)="getGeolocation()">
+        <ion-icon name="compass"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   <div *ngIf="geoLatitude">
-    <p>Latitude : {{geoLatitude}}</p>
-    <p>Longitude : {{geoLongitude}}</p>
-    <p>Accuracy : {{geoAccuracy}}</p>
+      <p>Latitude : {{geoLatitude}}</p>
+      <p>Longitude : {{geoLongitude}}</p>
+      <p>Accuracy : {{geoAccuracy}}</p>
     <p class="address-text">
- 
-      <span class="watch-text" *ngIf="isWatching; else notWatching">
-        Watching Location
-      </span>
-      <ng-template #notWatching>
-        Location Watch Stopped
-      </ng-template>
  
       <br>Address : {{geoAddress }}
     </p>
