@@ -4,6 +4,10 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 import * as watermark from 'watermarkjs';
 
+import { SideBarPage } from '../side-bar/side-bar.page';
+import { ModalController } from '@ionic/angular';
+
+
 @Component({
   selector: 'app-resumen',
   templateUrl: './resumen.page.html',
@@ -17,6 +21,7 @@ export class ResumenPage {
   geoLongitude: number;
   geoAccuracy: number;
   geoAddress: string;
+
  
   watchLocationUpdates: any; 
   loading: any;
@@ -43,6 +48,7 @@ export class ResumenPage {
  
   constructor(
     private camera: Camera,
+    private modalController: ModalController,
     private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder
   ) {
@@ -103,7 +109,6 @@ stopLocationWatch(){
     this.getGeolocation();
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
       this.originalImage = 'data:image/jpeg;base64,' + imageData;
-
       fetch(this.originalImage)
         .then(res => res.blob())
         .then(blob => {
@@ -128,10 +133,23 @@ stopLocationWatch(){
   }
 
   watermarkImage() {
+
     watermark([this.blobImage])
     .image(watermark.text.lowerLeft('('  +  this.geoAddress  +  ')', '200px Arial', '#F5A905', 0.8))
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
   }
+
+  async SideBar() {
+    const modal = await this.modalController.create({
+      component: SideBarPage,
+      cssClass: 'my-custom-modal-css'
+    });
+
+    modal.onDidDismiss().then((data) => {
+    });
+    return await modal.present();
+  }
+
 }

@@ -7,6 +7,10 @@ import { IonicModule } from '@ionic/angular';
 
 import { ResumenPage } from './resumen.page';
 
+import { SideBarPage } from '../side-bar/side-bar.page';
+import { SideBarPageModule } from '../side-bar/side-bar.module';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -15,9 +19,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
+
+  entryComponents: [
+    SideBarPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
+    SideBarPageModule,
+
     IonicModule,
     RouterModule.forChild(routes)
   ],

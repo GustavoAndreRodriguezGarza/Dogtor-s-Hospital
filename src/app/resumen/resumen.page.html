@@ -1,8 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>resumen</ion-title>
-  </ion-toolbar>
-</ion-header>
+
+<ion-header >
+    <ion-toolbar color="primary">
+      <ion-col>
+        <ion-icon name="menu" (click)="SideBar()"></ion-icon>
+      </ion-col>
+      <ion-col class="center">
+        Fotos
+      </ion-col>    
+    </ion-toolbar> 
+  </ion-header>
 
 <ion-content>
 
@@ -22,7 +28,7 @@
       <p>Longitude : {{geoLongitude}}</p>
       <p>Accuracy : {{geoAccuracy}}</p>
     <p class="address-text">
- 
+
       <br>Address : {{geoAddress }}
     </p>
   </div>
@@ -33,11 +39,13 @@
     <ion-icon name="images"></ion-icon>
     <ion-label>Galeria</ion-label>
   </ion-tab-button>
-  <ion-tab-button tab='/adopcion'>
+
+  <ion-tab-button routerLink='/adopcion'>
     <ion-icon name="bowtie"></ion-icon>
     <ion-label>Adopcion</ion-label>
   </ion-tab-button>
-  <ion-tab-button routerLink='/resumen'>
+  <ion-tab-button tab='/resumen'>
+
     <ion-icon name="camera"></ion-icon>
     <ion-label>Encontre un perro</ion-label>
   </ion-tab-button>
