@@ -3,8 +3,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 import * as watermark from 'watermarkjs';
+
 import { SideBarPage } from '../side-bar/side-bar.page';
 import { ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-resumen',
@@ -19,7 +21,7 @@ export class ResumenPage {
   geoLongitude: number;
   geoAccuracy: number;
   geoAddress: string;
-  Address: string;
+
  
   watchLocationUpdates: any; 
   loading: any;
@@ -102,11 +104,11 @@ stopLocationWatch(){
   this.isWatching = false;
   this.watchLocationUpdates.unsubscribe();
 }
- 
+
   takeSnap() {
+    this.getGeolocation();
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
       this.originalImage = 'data:image/jpeg;base64,' + imageData;
- 
       fetch(this.originalImage)
         .then(res => res.blob())
         .then(blob => {
@@ -116,7 +118,6 @@ stopLocationWatch(){
     }, (error) => {
        console.log(error);
     });
-    this.getGeolocation();
   }
 
   getLatLong() {
@@ -132,9 +133,9 @@ stopLocationWatch(){
   }
 
   watermarkImage() {
-    this.Address = this.geoAddress;
+
     watermark([this.blobImage])
-    .image(watermark.text.lowerLeft(this.Address, '200px Arial', '#F5A905', 0.8))
+    .image(watermark.text.lowerLeft('('  +  this.geoAddress  +  ')', '200px Arial', '#F5A905', 0.8))
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
@@ -150,4 +151,5 @@ stopLocationWatch(){
     });
     return await modal.present();
   }
+
 }

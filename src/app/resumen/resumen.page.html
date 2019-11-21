@@ -1,3 +1,4 @@
+
 <ion-header >
     <ion-toolbar color="primary">
       <ion-col>
@@ -9,35 +10,25 @@
     </ion-toolbar> 
   </ion-header>
 
-<ion-content color="primary" align="center">
-    <br>
-    <br>
-  <ion-button (click)="takeSnap()">
-    Take Snap
-  </ion-button>
+<ion-content>
+
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="takeSnap()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
   <img #waterMarkedImage>
-  <ion-button (click)="getGeolocation()">
-    Get Location
-  </ion-button>
-  <ion-button (click)="watchLocation()">
-    Watch Location Updates
-  </ion-button>
-  <ion-button (click)="stopLocationWatch()">
-    Stop Location Watch
-  </ion-button>
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+      <ion-fab-button (click)="getGeolocation()">
+        <ion-icon name="locate"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   <div *ngIf="geoLatitude">
-    <p>Latitude : {{geoLatitude}}</p>
-    <p>Longitude : {{geoLongitude}}</p>
-    <p>Accuracy : {{geoAccuracy}}</p>
+      <p>Latitude : {{geoLatitude}}</p>
+      <p>Longitude : {{geoLongitude}}</p>
+      <p>Accuracy : {{geoAccuracy}}</p>
     <p class="address-text">
- 
-      <span class="watch-text" *ngIf="isWatching; else notWatching">
-        Watching Location
-      </span>
-      <ng-template #notWatching>
-        Location Watch Stopped
-      </ng-template>
- 
+
       <br>Address : {{geoAddress }}
     </p>
   </div>
@@ -48,11 +39,13 @@
     <ion-icon name="images"></ion-icon>
     <ion-label>Galeria</ion-label>
   </ion-tab-button>
+
   <ion-tab-button routerLink='/adopcion'>
     <ion-icon name="bowtie"></ion-icon>
     <ion-label>Adopcion</ion-label>
   </ion-tab-button>
   <ion-tab-button tab='/resumen'>
+
     <ion-icon name="camera"></ion-icon>
     <ion-label>Encontre un perro</ion-label>
   </ion-tab-button>
