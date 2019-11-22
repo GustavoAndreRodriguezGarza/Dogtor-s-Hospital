@@ -120,10 +120,10 @@ stopLocationWatch(){
         .then(blob => {
           this.blobImage = blob;
           this.watermarkImage();
-        });
-     this.photos.unshift({
+    /* this.photos.unshift({
       data: 'data:image/jpeg;base64,' + imageData
-      });
+      });*/
+    });
     }, (error) => {
        console.log(error);
     });
@@ -148,6 +148,9 @@ stopLocationWatch(){
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
+    this.photos.unshift({
+        data: 'data:image/jpeg;base64,' + ImageData
+        });
   }
 
   async SideBar() {
