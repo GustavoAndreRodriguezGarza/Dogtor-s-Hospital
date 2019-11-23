@@ -1,67 +1,65 @@
-
 <ion-header >
-    <ion-toolbar color="primary">
-      <ion-col>
-        <ion-icon name="menu" (click)="SideBar()"></ion-icon>
-      </ion-col>
-      <ion-col class="header">
-        Fotos
-      </ion-col>
-      <ion-fab vertical="top" horizontal="end" size="small">
-          <ion-button (click)="toggle($event)">
-              <ion-icon name="radio-button-off" *ngIf="!visible"></ion-icon>
-              <ion-icon name="radio-button-on" *ngIf="visible"></ion-icon>
-           </ion-button>
-        </ion-fab> 
-    </ion-toolbar> 
-  </ion-header>
+  <ion-toolbar color="primary">
+    <ion-col>
+      <ion-icon name="menu" (click)="SideBar()"></ion-icon>
+    </ion-col>
+    <ion-col class="header">
+      Encontre un Animal
+    </ion-col>
+    <ion-fab vertical="top" horizontal="end" size="small">
+        <ion-button (click)="toggle($event)">
+            <ion-icon name="radio-button-off" *ngIf="!visible"></ion-icon>
+            <ion-icon name="radio-button-on" *ngIf="visible"></ion-icon>
+         </ion-button>
+      </ion-fab> 
+  </ion-toolbar> 
+</ion-header>
 
 <ion-content>
 
-    <ion-fab vertical="top" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="takeSnap()">
-          <ion-icon name="camera"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col size="12" *ngFor="let photo of photos">
-            <img #waterMarkedImage>
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      
-  <ion-fab vertical="top" horizontal="start" slot="fixed">
-      <ion-fab-button (click)="getGeolocation()">
-        <ion-icon name="locate"></ion-icon>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="takeSnap()">
+        <ion-icon name="camera"></ion-icon>
       </ion-fab-button>
     </ion-fab>
-  <div *ngIf="geoLatitude">
-      <p>Latitude : {{geoLatitude}}</p>
-      <p>Longitude : {{geoLongitude}}</p>
-      <p>Accuracy : {{geoAccuracy}}</p>
-    <p class="address-text">
 
-      <br>Address : {{geoAddress }}
-    </p>
-  </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" *ngFor="let photo of photos">
+          <img #waterMarkedImage>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+<ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="getGeolocation()">
+      <ion-icon name="locate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+<div *ngIf="geoLatitude">
+    <p>Latitud : {{geoLatitude}}</p>
+    <p>Longitud : {{geoLongitude}}</p>
+  <p class="address-text">
+
+    <br>Direccion : {{geoAddress }}
+  </p>
+</div>
 </ion-content>
 
 <ion-tab-bar slot="bottom" color="primary" class="Tabs">
-  <ion-tab-button routerLink="/home">
-    <ion-icon name="images"></ion-icon>
-    <ion-label>Galeria</ion-label>
-  </ion-tab-button>
+<ion-tab-button routerLink="/home">
+  <ion-icon name="images"></ion-icon>
+  <ion-label>Galeria</ion-label>
+</ion-tab-button>
 
-  <ion-tab-button routerLink='/adopcion'>
-    <ion-icon name="bowtie"></ion-icon>
-    <ion-label>Adopcion</ion-label>
-  </ion-tab-button>
+<ion-tab-button routerLink='/adopcion'>
+  <ion-icon name="bowtie"></ion-icon>
+  <ion-label>Adopcion</ion-label>
+</ion-tab-button>
 
-  <ion-tab-button tab='/resumen'>
-    <ion-icon name="camera"></ion-icon>
-    <ion-label>Encontre un perro</ion-label>
-  </ion-tab-button>
+<ion-tab-button tab='/resumen'>
+  <ion-icon name="camera"></ion-icon>
+  <ion-label>Encontre un Animal</ion-label>
+</ion-tab-button>
 </ion-tab-bar>

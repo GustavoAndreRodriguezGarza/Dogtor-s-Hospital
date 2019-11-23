@@ -61,7 +61,6 @@ export class ResumenPage {
     private flashlight: Flashlight,
     private nativeGeocoder: NativeGeocoder
   ) {
-    this.getLatLong();
   }
 
   toggle(event) {
@@ -119,58 +118,24 @@ export class ResumenPage {
     return address.slice(0, -2);
 }
 
-watchLocation(){
-  this.isWatching = true;
-  this.watchLocationUpdates = this.geolocation.watchPosition();
-  this.watchLocationUpdates.subscribe((resp) => {
-    this.geoLatitude = resp.coords.latitude;
-    this.geoLongitude = resp.coords.longitude; 
-    this.getGeoencoder(this.geoLatitude,this.geoLongitude);
-  });
-}
-
-stopLocationWatch(){
-  this.isWatching = false;
-  this.watchLocationUpdates.unsubscribe();
-}
-
   takeSnap() {
     this.getGeolocation();
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
      this.originalImage = 'data:image/jpeg;base64,' + imageData;
-     /*this.photos.unshift({
-        data: 'data:image/jpeg;base64,' + imageData
-    });*/
      fetch(this.originalImage)
         .then(res => res.blob())
         .then(blob => {
           this.blobImage = blob;
           this.watermarkImage();
-    /* this.photos.unshift({
-      data: 'data:image/jpeg;base64,' + imageData
-      });*/
     });
     }, (error) => {
        console.log(error);
     });
   }
 
-  getLatLong() {
-    this.loadingLocation = true;
-    this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp);
-      this.locationCordinates = resp.coords;
-      this.loadingLocation = false;
-    }).catch((error) => {
-      this.loadingLocation = false;
-      console.log('Error getting location', error);
-    });
-  }
-
   watermarkImage() {
-
     watermark([this.blobImage])
-    .image(watermark.text.lowerLeft('('  +  this.geoAddress  +  ')', '200px Arial', '#F5A905', 0.8))
+    .image(watermark.text.lowerLeft('('  +  this.geoAddress  +  ')', '75px serif', '#fff', 0.6))
       .then(img => {
         this.waterMarkImage.nativeElement.src = img.src;
       });
