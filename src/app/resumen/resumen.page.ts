@@ -7,11 +7,14 @@ import * as watermark from 'watermarkjs';
 import { SideBarPage } from '../side-bar/side-bar.page';
 import { ModalController } from '@ionic/angular';
 
+import { Flashlight } from '@ionic-native/flashlight/ngx';
+
 
 @Component({
   selector: 'app-resumen',
   templateUrl: './resumen.page.html',
   styleUrls: ['./resumen.page.scss'],
+  providers: [Flashlight]
 })
 
 
@@ -23,6 +26,7 @@ export class ResumenPage {
   geoLongitude: number;
   geoAccuracy: number;
   geoAddress: string;
+  power: boolean = false;
 
  
   watchLocationUpdates: any; 
@@ -47,15 +51,37 @@ export class ResumenPage {
     mediaType: this.camera.MediaType.PICTURE,
     sourceType: this.camera.PictureSourceType.CAMERA
   };
- 
+
+  visible: boolean = false;
  
   constructor(
     private camera: Camera,
     private modalController: ModalController,
     private geolocation: Geolocation,
+    private flashlight: Flashlight,
     private nativeGeocoder: NativeGeocoder
   ) {
     this.getLatLong();
+  }
+
+  toggle(event) {
+    this.visible = !this.visible;
+    this.switchFlashlight(event);
+   }
+
+   switchFlashlight(evento) {
+
+    if(this.power == false)
+      this.power = true;
+    else
+      this.power = false;
+
+    if (this.power == true) {
+      this.flashlight.switchOn();
+    }
+    else {
+      this.flashlight.switchOff();
+    }
   }
 
   getGeolocation(){

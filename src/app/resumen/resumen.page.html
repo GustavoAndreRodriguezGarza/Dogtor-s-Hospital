@@ -4,9 +4,15 @@
       <ion-col>
         <ion-icon name="menu" (click)="SideBar()"></ion-icon>
       </ion-col>
-      <ion-col class="center">
+      <ion-col class="header">
         Fotos
-      </ion-col>    
+      </ion-col>
+      <ion-fab vertical="top" horizontal="end" size="small">
+          <ion-button (click)="toggle($event)">
+              <ion-icon name="radio-button-off" *ngIf="!visible"></ion-icon>
+              <ion-icon name="radio-button-on" *ngIf="visible"></ion-icon>
+           </ion-button>
+        </ion-fab> 
     </ion-toolbar> 
   </ion-header>
 

@@ -5,7 +5,13 @@
       </ion-col>
       <ion-col class="center">
         Galeria de Animales
-      </ion-col>    
+      </ion-col> 
+      <ion-fab vertical="top" horizontal="end" size="small">
+          <ion-button (click)="toggle($event)">
+              <ion-icon name="radio-button-off" *ngIf="!visible"></ion-icon>
+              <ion-icon name="radio-button-on" *ngIf="visible"></ion-icon>
+           </ion-button>
+        </ion-fab>   
     </ion-toolbar> 
   </ion-header>
   
@@ -37,9 +43,6 @@
       </ion-item-sliding>
     </ion-list>
     <br>
-    <div align="center">
-      <input class="toggle" type="checkbox" (change)="switchFlashlight($event)"/>
-    </div>
   </ion-content>
   
   <ion-tab-bar slot="bottom" color="primary" class="Tabs">

@@ -11,6 +11,8 @@ import { ModalController } from '@ionic/angular';
   providers: [Flashlight]
 })
 export class HomePage {
+  visible: boolean = false;
+  power: boolean = false;
 
   constructor(private flashlight: Flashlight, private modalController: ModalController) {
   }
@@ -59,16 +61,23 @@ export class HomePage {
 
   switchFlashlight(evento) {
 
-    let power: boolean = evento.target.checked;
+    if(this.power == false)
+      this.power = true;
+    else
+      this.power = false;
 
-
-    if (power == true) {
+    if (this.power == true) {
       this.flashlight.switchOn();
     }
     else {
       this.flashlight.switchOff();
     }
   }
+
+  toggle(event) {
+    this.visible = !this.visible;
+    this.switchFlashlight(event);
+   }
 
   async SideBar() {
     const modal = await this.modalController.create({
