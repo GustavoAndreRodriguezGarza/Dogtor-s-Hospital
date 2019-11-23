@@ -2,7 +2,9 @@ ion-title{
     --color: white;
     font-size: 18pt;
 }
-
+.titulo{
+    font-size: x-large;
+}
 ion-input{
     --placeholder-color: white; 
     --placeholder-opacity: 100;
@@ -25,8 +27,10 @@ ion-item{
     float: left;
     text-align: center;
 }
-
-
+ion-segment-button{
+    --indicator-color-checked: white;
+    --color-checked: white;
+}
 ion-button{
     --background: white;
     --opacity: 100;	

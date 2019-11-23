@@ -1,6 +1,11 @@
-<ion-toolbar color="primary">
-  <ion-title>¿Quién eres?</ion-title>
-</ion-toolbar>
+<ion-toolbar color="primary" class="titulo">
+    <ion-col>
+      <ion-icon name="arrow-back" (click)="salirModal()"></ion-icon>
+    </ion-col>
+    <ion-col >
+      ¿Quien eres?
+    </ion-col>
+</ion-toolbar> 
 
 <ion-content color="primary">
 
@@ -52,9 +57,7 @@
 
   <div class="botones">
 
-    <ion-button (click)="salirModal()">Cancelar</ion-button>
-
-    <ion-button (click)="Adoptar()">Aceptar</ion-button>
+    <ion-button (click)="Adoptar()">Enviar Solicitud</ion-button>
 
   </div>
 
